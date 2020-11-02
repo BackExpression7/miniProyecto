@@ -19,6 +19,11 @@ public class UsuarioDAO extends Conexion{
         super();
     }
     
+    /**
+     * Este metodo hace insert en la tabla de usuario con el usuario recibido
+     * @param usuario Usuario que se quiere insertar en la tabla
+     * @throws SQLException 
+     */
     public void insert(Usuario usuario) throws SQLException
     {
         PreparedStatement statement;

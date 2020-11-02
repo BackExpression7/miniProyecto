@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelos.Conferencia;
+import vistas.MenuPrincipal;
 
 /**
  *
@@ -19,6 +20,7 @@ public class MiniProyecto {
 
     public static void main(String[] args) 
     {
+        /*
         Conferencia confe = new Conferencia("TED TALK", false, 0, 10);
         ConferenciaDAO confeDAO = new ConferenciaDAO();
         try {
@@ -26,7 +28,8 @@ public class MiniProyecto {
         } catch (SQLException ex) {
             Logger.getLogger(MiniProyecto.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        */
+        new MenuPrincipal().setVisible(true);
     }
     
 }

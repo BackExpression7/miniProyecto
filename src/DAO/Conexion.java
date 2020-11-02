@@ -14,6 +14,7 @@ import java.sql.SQLException;
  * @author Jesus
  */
 public class Conexion {
+    //Conexion de la bd
     protected static Connection con;
     
     public Conexion()

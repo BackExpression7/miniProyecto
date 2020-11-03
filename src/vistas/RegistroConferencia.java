@@ -1,16 +1,24 @@
 
 package vistas;
+import DAO.ConferenciaDAO;
+import DAO.presentador;
 import Utilerias.Etiqueta;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import static java.lang.Double.parseDouble;
+import static java.lang.Integer.parseInt;
+import java.sql.SQLException;
 import java.util.HashMap;
 import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import modelos.Conferencia;
+import modelos.Presentador;
 
 /**
  *
@@ -215,7 +223,41 @@ public class RegistroConferencia extends JFrame implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e) 
     {
-        System.out.println("Registrado :)");
+        Conferencia confer = new Conferencia();
+        Presentador presen1 = new Presentador();
+        Presentador presen2 = new Presentador();
+        Presentador presen3 = new Presentador();
+        ConferenciaDAO mandar =new ConferenciaDAO();
+        presentador DAO = new presentador();
+        double costo=0.0;
+        boolean tieneCosto = false;
+         confer.setNombreConferencia(campos.get("nombreConfe").getText());
+         confer.setCapacidad(parseInt(campos.get("capacidad").getText()));
+         
+         if(campos.get("costo").getText().equals("")||parseDouble(campos.get("costo").getText())> 0.00)
+         {
+              confer.setCosto(costo);
+             tieneCosto=false;
+         }else{
+             tieneCosto=true;
+              confer.setCosto(parseDouble(campos.get("costo").getText()));
+         }
+        
+         confer.setTieneCosto(tieneCosto);
+         presen1.setNombrePresentador(campos.get("nombrep1").getText());
+         presen2.setNombrePresentador(campos.get("nombrep2").getText());
+         presen3.setNombrePresentador(campos.get("nombrep3").getText());
+            try {
+                mandar.insert(confer);
+                DAO.insert(presen1);
+                DAO.insert(presen2);
+                DAO.insert(presen3);
+            } catch (SQLException ex) {
+                System.out.println("no es posible insertar los datos" 
+                   + ex.getMessage());
+            }
+        JOptionPane.showMessageDialog(null,"conferencia Registrada");
+        dispose();
     }
 
 

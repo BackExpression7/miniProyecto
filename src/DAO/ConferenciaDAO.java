@@ -33,14 +33,14 @@ public class ConferenciaDAO extends Conexion
         double costo = 0.0;
         PreparedStatement statement;
         String query = "INSERT INTO conferencia(nombre_conferencia"
-                + ",tiene_costo,costo,capaciadad) VALUES (?,?,?,?)";
+                + ",tiene_costo,costo,capacidad) VALUES (?,?,?,?)";
         
-        if(confe.TieneCosto())
+        if(confe.getTieneCosto())
             costo = confe.getCosto();
             
         statement = con.prepareStatement(query);
         statement.setString(1, confe.getNombreConferencia());
-        statement.setBoolean(2, confe.TieneCosto());
+        statement.setBoolean(2, confe.getTieneCosto());
         statement.setDouble(3, costo);
         statement.setInt(4, confe.getCapacidad());
         statement.execute();

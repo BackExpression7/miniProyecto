@@ -5,16 +5,18 @@
  */
 package vistas;
 
+import DAO.UsuarioDAO;
 import Utilerias.Etiqueta;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
+import modelos.Usuario;
 
 /**
  *
@@ -80,10 +82,18 @@ public class RegistroUsuario extends JFrame implements ActionListener
     public void actionPerformed(ActionEvent e) 
     {
         int idUsuario = 0;
+        Usuario user=new Usuario();
+        UsuarioDAO mandar =new UsuarioDAO();
         if(!nombre.getText().equals("") && !numeroTelefono.getText().equals(""))
         {
-            //crea un usuario
-            //idUsuario tiene que ser el id del usuario creado
+            user.setNombreUsuario(nombre.getText());
+            user.setNumeroTel(numeroTelefono.getText());
+            try {
+                mandar.insert(user);
+            } catch (SQLException ex) {
+                System.out.println("no es posible insertar los datos" 
+                   + ex.getMessage());
+            }
             registroConferencia(idUsuario);
         }else if(!nombreLogin.getText().equals(""))
         {

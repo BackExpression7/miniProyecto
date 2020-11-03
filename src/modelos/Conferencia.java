@@ -45,7 +45,7 @@ public class Conferencia {
         this.nombreConferencia = nombreConferencia;
     }
 
-    public boolean TieneCosto() {
+    public boolean getTieneCosto() {
         return tieneCosto;
     }
 
